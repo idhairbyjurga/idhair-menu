@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "eyebrow": "European Hair Stylist • Dubai",
+    "title": "Hair",
+    "subtitle": "Natural, dimensional colour & cuts — Mira, Dubai. Hair Personally i.Dressed."
+  },
+  "bookUrl": "#",
+  "sections": [
+    {
+      "id": "styling",
+      "title": "Styling",
+      "note": "Prices shown Short / Medium / Long where applicable.",
+      "groups": [
+        {
+          "subhead": "",
+          "items": [
+            { "name": "Blow Dry — Straight / Smooth", "desc": "Professional blow-dry for a smooth, polished finish.", "price": "120 / 140 / 160 AED" },
+            { "name": "Blow Dry — Wavy / Curl", "desc": "Professional blow-dry finished with waves or curls.", "price": "150 / 170 / 190 AED" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cuts",
+      "title": "Hair Cuts & Trims",
+      "note": "",
+      "groups": [
+        {
+          "subhead": "",
+          "items": [
+            { "name": "Fringe", "desc": "Fringe trim or reshaping.", "price": "60 AED" },
+            { "name": "2″ Trim", "desc": "Up to 2″ removed while maintaining your existing haircut and shape.", "price": "160 AED" },
+            { "name": "Hair Cut", "desc": "Classic haircut to refine your length, shape and balance.", "price": "230 AED" },
+            { "name": "Layered Hair Cut", "desc": "Layered haircut designed to create movement, shape and volume.", "price": "300 AED" },
+            { "name": "Classic Cut + Blow Dry", "desc": "Classic haircut finished with a professional blow-dry.", "price": "320 AED" },
+            { "name": "Layered Cut + Blow Dry", "desc": "Layered haircut finished with a professional blow-dry.", "price": "370 AED" },
+            { "name": "Restyling Cut", "desc": "A new look involving a significant change to your existing haircut. Blow-dry included.", "price": "420 AED" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colour",
+      "title": "Colour",
+      "note": "All highlight services include customised toner + WellaPlex bond protection. Standalone colour and blonding services: blow-dry is booked separately. Colour Edit services are complete appointments with blow-dry included.",
+      "groups": [
+        {
+          "subhead": "Colour Edit",
+          "items": [
+            { "name": "TONE — Refresher Toning Ritual", "desc": "Refresh and refine your colour with a customised toner/gloss, care and professional blow-dry.", "price": "280 / 340 / 390 AED" },
+            { "name": "ELEVATE — Dimensional Highlights", "desc": "Personalised dimensional highlights with customised toner, WellaPlex bond protection and professional blow-dry.", "price": "750 / 860 / 980 AED" },
+            { "name": "TRANSFORM — Balayage / Ombre", "desc": "Bespoke balayage or ombre with customised toner, WellaPlex bond protection and professional blow-dry.", "price": "750 / 860 / 1,020 AED" },
+            { "name": "REFRESH — Roots Colour + Cut", "desc": "Root colour refresh, Classic Hair Cut and professional blow-dry.", "price": "550 AED" }
+          ]
+        },
+        {
+          "subhead": "Colour",
+          "items": [
+            { "name": "Roots Colour", "desc": "Regrowth colour refresh for maintaining your existing colour and grey coverage where required.", "price": "275 AED" },
+            { "name": "Full Head Colour", "desc": "Full colour application through roots and lengths for an overall colour refresh or change.", "price": "350 / 420 / 500 AED" },
+            { "name": "Toner / Gloss", "desc": "Customised toner or gloss to refresh, refine or rebalance your existing colour.", "price": "180 / 220 / 250 AED" },
+            { "name": "Balayage / Ombre", "desc": "Bespoke dimensional lightening with customised toner and WellaPlex bond protection.", "price": "650 / 750 / 900 AED" }
+          ]
+        },
+        {
+          "subhead": "Highlights",
+          "items": [
+            { "name": "Face Frame", "desc": "Targeted lightening around the face for added brightness and dimension.", "price": "280 AED" },
+            { "name": "T-Section", "desc": "Highlights through the parting, top and front for a brighter, refreshed result.", "price": "380 / 430 / 480 AED" },
+            { "name": "Half Head Highlights", "desc": "Dimensional highlights through the upper and most visible areas of the hair.", "price": "500 / 575 / 650 AED" },
+            { "name": "Full Head Highlights", "desc": "Highlights throughout the hair for maximum overall brightness and dimension.", "price": "650 / 750 / 850 AED" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "treatments",
+      "title": "Treatments",
+      "note": "",
+      "placeholder": "Treatment services coming soon.",
+      "groups": []
+    },
+    {
+      "id": "extensions",
+      "title": "Extensions",
+      "note": "",
+      "placeholder": "Extension services and subcategories coming soon.",
+      "groups": []
+    }
+  ]
+}

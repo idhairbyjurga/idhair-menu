@@ -1,0 +1,51 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# This makes /admin editable only by people you invite via Netlify Identity
+local_backend: false
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "menu"
+    label: "Price Menu"
+    files:
+      - name: "menu"
+        label: "Menu Content"
+        file: "data/menu.json"
+        fields:
+          - label: "Hero Banner"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Small Label (e.g. European Hair Stylist • Dubai)", name: "eyebrow", widget: "string" }
+              - { label: "Big Title (e.g. Hair)", name: "title", widget: "string" }
+              - { label: "Subtitle Text", name: "subtitle", widget: "string" }
+
+          - label: "Book Now Link (SimplyBook.me URL)"
+            name: "bookUrl"
+            widget: "string"
+
+          - label: "Menu Sections"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Section ID (no spaces, e.g. styling)", name: "id", widget: "string" }
+              - { label: "Section Title (shown on page)", name: "title", widget: "string" }
+              - { label: "Note (shown at bottom of section, optional)", name: "note", widget: "string", required: false }
+              - { label: "Placeholder text (shown only if section has no services yet)", name: "placeholder", widget: "string", required: false }
+              - label: "Service Groups"
+                name: "groups"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Group Subheading (optional, e.g. Highlights)", name: "subhead", widget: "string", required: false }
+                  - label: "Services"
+                    name: "items"
+                    widget: "list"
+                    fields:
+                      - { label: "Service Name", name: "name", widget: "string" }
+                      - { label: "Description", name: "desc", widget: "string", required: false }
+                      - { label: "Price (e.g. 230 AED or 350 / 420 / 500 AED)", name: "price", widget: "string" }

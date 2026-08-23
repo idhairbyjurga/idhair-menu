@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iDHair by Jurga — September Hair Menu</title>
+<style>
+/* ============================================================
+   COLORS — edit these six lines to change the whole site's palette
+   ============================================================ */
+:root{
+  --ink:#1f1f1f;       /* main text */
+  --muted:#6f6a66;     /* descriptions, secondary text */
+  --line:#e5dfd9;      /* thin dividing lines */
+  --soft:#f6f1ec;      /* section background tint */
+  --paper:#fffdfa;     /* page background */
+  --accent:#b98b5e;    /* Book Now button + highlight colour */
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+}
+
+/* ============================================================
+   STICKY NAV — brand + jump links + Book Now button
+   ============================================================ */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,253,250,.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1000px;
+  margin:0 auto;
+  padding:14px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.nav-brand{
+  font-family:Georgia, serif;
+  font-size:19px;
+  white-space:nowrap;
+}
+.nav-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  font-size:12px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.nav-links a{
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  padding-bottom:2px;
+}
+.nav-links a:hover{border-bottom-color:var(--ink)}
+.book-btn{
+  background:var(--accent);
+  color:#fff;
+  font-size:12px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  text-decoration:none;
+  padding:10px 18px;
+  border-radius:2px;
+  white-space:nowrap;
+}
+
+/* ============================================================
+   HERO — swap the background-image URL for your own photo
+   ============================================================ */
+.hero{
+  position:relative;
+  min-height:56vh;
+  display:flex;
+  align-items:flex-end;
+  background:
+    linear-gradient(0deg, rgba(31,31,31,.55), rgba(31,31,31,.1)),
+    url("REPLACE-WITH-YOUR-PHOTO-URL.jpg") center/cover no-repeat,
+    var(--soft);
+}
+.hero-inner{
+  max-width:1000px;
+  width:100%;
+  margin:0 auto;
+  padding:0 22px 44px;
+  color:#fff;
+}
+.hero-inner .eyebrow{
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:.85;
+}
+.hero-inner h1{
+  font-family:Georgia, serif;
+  font-weight:400;
+  font-size:52px;
+  margin:8px 0 6px;
+}
+.hero-inner p{
+  margin:0;
+  font-size:15px;
+  line-height:1.6;
+  max-width:520px;
+  opacity:.95;
+}
+
+/* ============================================================
+   MENU SECTIONS
+   ============================================================ */
+.menu{
+  max-width:1000px;
+  margin:0 auto;
+  padding:0 22px;
+}
+.section{
+  padding:56px 0 46px;
+  border-bottom:1px solid var(--line);
+  scroll-margin-top:80px; /* keeps sticky nav from covering the heading when jumped to */
+}
+.section:last-of-type{border-bottom:none}
+.section-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:26px;
+}
+.section-head h2{
+  font-family:Georgia, serif;
+  font-weight:400;
+  font-size:30px;
+  margin:0;
+}
+.section-head .count{
+  color:var(--muted);
+  font-size:12px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.subhead{
+  font-family:Georgia, serif;
+  font-size:18px;
+  margin:30px 0 10px;
+}
+.subhead:first-child{margin-top:0}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+td{
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+tr:last-child td{border-bottom:none}
+td.price{
+  text-align:right;
+  white-space:nowrap;
+  padding-left:18px;
+  font-weight:600;
+}
+.desc{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:12.5px;
+  line-height:1.45;
+  max-width:640px;
+}
+.note{
+  margin-top:14px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+.placeholder{
+  padding:8px 0 2px;
+  color:var(--muted);
+  font-style:italic;
+  font-size:14px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  text-align:center;
+  background:var(--soft);
+  padding:40px 18px;
+  font-size:13px;
+  line-height:1.7;
+}
+footer .foot-book{
+  display:inline-block;
+  margin-top:14px;
+  background:var(--accent);
+  color:#fff;
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  padding:12px 24px;
+  border-radius:2px;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media(max-width:700px){
+  .nav-inner{flex-wrap:wrap; padding:12px 16px}
+  .nav-links{
+    order:3;
+    width:100%;
+    gap:12px 16px;
+    overflow-x:auto;
+    padding-bottom:2px;
+  }
+  .hero{min-height:44vh}
+  .hero-inner h1{font-size:38px}
+  .section{padding:40px 0 34px}
+  .section-head h2{font-size:24px}
+  table{font-size:13px}
+  td.price{padding-left:12px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">iDHair by Jurga</div>
+    <div class="nav-links" id="nav-links"></div>
+    <a class="book-btn" id="book-btn-top" href="#" target="_blank" rel="noopener">Book Now</a>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="eyebrow" id="hero-eyebrow"></div>
+    <h1 id="hero-title"></h1>
+    <p id="hero-subtitle"></p>
+  </div>
+</section>
+
+<main class="menu" id="menu"></main>
+
+<footer>
+  iDHair • Mira, Dubai<br>
+  September Hair Services &amp; Prices
+  <br>
+  <a class="foot-book" id="book-btn-bottom" href="#" target="_blank" rel="noopener">Book Your Appointment</a>
+</footer>
+
+<script>
+/* ============================================================
+   This script reads data/menu.json and builds the page.
+   To change prices/services, DO NOT edit this file —
+   edit data/menu.json directly, or use the /admin panel.
+   ============================================================ */
+async function buildMenu(){
+  const res = await fetch('data/menu.json', { cache: 'no-store' });
+  const data = await res.json();
+
+  // Hero
+  document.getElementById('hero-eyebrow').textContent = data.hero.eyebrow || '';
+  document.getElementById('hero-title').textContent = data.hero.title || '';
+  document.getElementById('hero-subtitle').textContent = data.hero.subtitle || '';
+
+  // Book buttons
+  document.getElementById('book-btn-top').href = data.bookUrl || '#';
+  document.getElementById('book-btn-bottom').href = data.bookUrl || '#';
+
+  // Nav links (built from sections, so a new section you add in the CMS
+  // automatically gets a nav link too)
+  const navEl = document.getElementById('nav-links');
+  navEl.innerHTML = data.sections.map(function(s){
+    return '<a href="#' + s.id + '">' + s.title + '</a>';
+  }).join('');
+
+  // Sections
+  const menuEl = document.getElementById('menu');
+  menuEl.innerHTML = data.sections.map(function(section){
+    let itemCount = 0;
+    (section.groups || []).forEach(function(g){ itemCount += (g.items || []).length; });
+
+    let html = '<section class="section" id="' + section.id + '">';
+    html += '<div class="section-head"><h2>' + section.title + '</h2>';
+    if(itemCount > 0){
+      html += '<span class="count">' + itemCount + (itemCount === 1 ? ' service' : ' services') + '</span>';
+    }
+    html += '</div>';
+
+    (section.groups || []).forEach(function(group){
+      if(group.subhead){
+        html += '<div class="subhead">' + group.subhead + '</div>';
+      }
+      html += '<table>';
+      (group.items || []).forEach(function(item){
+        html += '<tr><td><strong>' + item.name + '</strong>' +
+          (item.desc ? '<span class="desc">' + item.desc + '</span>' : '') +
+          '</td><td class="price">' + item.price + '</td></tr>';
+      });
+      html += '</table>';
+    });
+
+    if(itemCount === 0 && section.placeholder){
+      html += '<div class="placeholder">' + section.placeholder + '</div>';
+    }
+
+    if(section.note){
+      html += '<div class="note">' + section.note + '</div>';
+    }
+
+    html += '</section>';
+    return html;
+  }).join('');
+}
+
+buildMenu();
+</script>
+
+</body>
+</html>
