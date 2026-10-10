@@ -130,16 +130,19 @@ a{color:var(--accent)}
   margin:0 auto;
   padding:0 24px;
   display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
+  flex-wrap:wrap;
+  align-items:flex-start;
 }
+/* one tab = the left half, as each of the two tabs is half width on the booking page */
 .home-tab{
   position:relative;
-  display:inline-block;
+  display:block;
+  flex:0 0 50%;
+  width:50%;
   min-width:180px;
   margin:0;
-  padding:33px 40px;
+  padding:33px 0;
+  text-align:center;
   font-family:var(--font-body);
   font-size:16px;
   font-weight:600;
@@ -155,6 +158,8 @@ a{color:var(--accent)}
   height:5px;
   background:var(--accent);
 }
+.home-tabs .eyebrow,
+.home-tabs .hero-subtitle{flex:0 0 100%; text-align:left}
 .home-tabs .eyebrow{
   padding-top:18px;
   font-size:13px;
@@ -316,7 +321,7 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
   }
   .hero{aspect-ratio:3 / 2; background-position:center 30%}
   .home-tabs-inner{padding:0 16px}
-  .home-tab{padding:12px 24px; min-height:48px}
+  .home-tab{padding:12px 0; min-height:48px}
   .section{padding:38px 0 32px}
   .section-head h2{font-size:38px}
   .subhead{font-size:14px; letter-spacing:.06em; padding:12px; margin-top:18px}
