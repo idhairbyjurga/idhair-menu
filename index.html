@@ -58,9 +58,9 @@ a{color:var(--accent)}
   max-width:1140px;
   margin:0 auto;
   padding:12px 24px;
-  display:flex;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;   /* brand | links | button */
   align-items:center;
-  justify-content:space-between;
   gap:16px;
 }
 .nav-brand{
@@ -70,7 +70,10 @@ a{color:var(--accent)}
   line-height:1;
   color:var(--ink);
   white-space:nowrap;
+  text-align:center;     /* centred within its column */
+  justify-self:center;
 }
+.nav-inner .book-btn{justify-self:end}
 .nav-links{
   display:flex;
   flex-wrap:wrap;
@@ -312,10 +315,12 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
   .hero{min-height:570px}
 }
 @media(max-width:700px){
-  .nav-inner{flex-wrap:wrap; padding:12px 16px}
-  .nav-brand{font-size:30px}
+  .nav-inner{grid-template-columns:1fr auto; padding:12px 16px}
+  .nav-brand{font-size:30px; grid-row:1; grid-column:1}
+  .nav-inner .book-btn{grid-row:1; grid-column:2}
   .nav-links{
-    order:3;
+    grid-row:2;
+    grid-column:1 / -1;
     width:100%;
     gap:12px 16px;
     font-size:13px;
