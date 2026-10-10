@@ -9,26 +9,39 @@
 <meta property="og:image" content="https://idhairbyjurga.netlify.app/menu-new-image.png">
 <meta property="og:url" content="https://idhairbyjurga.netlify.app/">
 <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allison&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   COLORS — edit these six lines to change the whole site's palette
+   STYLE MATCHED TO idresshair.simplybook.me (bookingtroll theme)
+   COLORS — edit these lines to change the whole site's palette
    ============================================================ */
 :root{
-  --ink:#1f1f1f;       /* main text */
+  --ink:#333333;       /* main text  (SimplyBook dark_font_color) */
+  --ink-2:#332F2D;     /* serif heading text on booking page */
   --muted:#6f6a66;     /* descriptions, secondary text */
-  --line:#e5dfd9;      /* thin dividing lines */
-  --soft:#f6f1ec;      /* section background tint */
-  --paper:#fffdfa;     /* page background */
-  --accent:#b98b5e;    /* Book Now button + highlight colour */
+  --line:#e5d9ce;      /* thin dividing lines / card borders */
+  --soft:#ede3d7;      /* beige band (SimplyBook sb_available) */
+  --paper:#ffffff;     /* page background (SimplyBook body_bg_color) */
+  --accent:#861657;    /* plum base colour (SimplyBook sb_base_color) */
+  --accent-dark:#6d1246;
+  --beige-btn:#d9c7b8; /* SimplyBook btn_color_1 */
+  --font-body:"Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-script:"Allison", cursive;
+  --font-serif:Georgia, "Times New Roman", serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:var(--font-body);
+  font-size:15px;
+  line-height:1.6;
   color:var(--ink);
   background:var(--paper);
 }
+a{color:var(--accent)}
 
 /* ============================================================
    STICKY NAV — brand + jump links + Book Now button
@@ -37,103 +50,115 @@ body{
   position:sticky;
   top:0;
   z-index:50;
-  background:rgba(255,253,250,.92);
+  background:rgba(255,255,255,.94);
   backdrop-filter:blur(6px);
   border-bottom:1px solid var(--line);
 }
 .nav-inner{
-  max-width:1000px;
+  max-width:1140px;
   margin:0 auto;
-  padding:14px 22px;
+  padding:12px 24px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
 }
 .nav-brand{
-  font-family:Georgia, serif;
-  font-size:19px;
+  font-family:var(--font-script);
+  font-weight:400;
+  font-size:34px;
+  line-height:1;
+  color:var(--ink);
   white-space:nowrap;
 }
 .nav-links{
   display:flex;
   flex-wrap:wrap;
-  gap:18px;
-  font-size:12px;
-  letter-spacing:.06em;
-  text-transform:uppercase;
+  gap:22px;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:0;
+  text-transform:none;
 }
 .nav-links a{
   color:var(--ink);
   text-decoration:none;
-  border-bottom:1px solid transparent;
+  border-bottom:2px solid transparent;
   padding-bottom:2px;
 }
-.nav-links a:hover{border-bottom-color:var(--ink)}
+.nav-links a:hover{color:var(--accent); border-bottom-color:var(--accent)}
 .book-btn{
   background:var(--accent);
   color:#fff;
-  font-size:12px;
-  letter-spacing:.06em;
-  text-transform:uppercase;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:0;
+  text-transform:none;
   text-decoration:none;
-  padding:10px 18px;
-  border-radius:2px;
+  padding:11px 22px;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  border-radius:8px;
   white-space:nowrap;
 }
+.book-btn:hover{background:var(--accent-dark)}
 
 /* ============================================================
-   HERO — swap the background-image URL for your own photo
+   HERO — wide short banner, same proportions as the booking page
+   (SimplyBook background image is 1920 x 600, shown as "cover")
    ============================================================ */
 .hero{
   position:relative;
-  aspect-ratio:2 / 1;
+  aspect-ratio:16 / 5;
   min-height:0;
   display:flex;
   align-items:flex-end;
   background:
-    url("menu-new-image.png") center/contain no-repeat,
-    #fff;
+    url("menu-new-image.png") center 35% / cover no-repeat,
+    #bfe3ea;
 }
 .hero-inner{
-  max-width:1000px;
+  max-width:1140px;
   width:100%;
   margin:0 auto;
-  padding:0 22px 44px;
-  color:#fff;
+  padding:0 24px 28px;
+  color:var(--ink);
 }
 .hero-inner .eyebrow{
-  font-size:12px;
-  letter-spacing:.14em;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.1em;
   text-transform:uppercase;
   opacity:.85;
 }
 .hero-inner h1{
-  font-family:Georgia, serif;
+  font-family:var(--font-script);
   font-weight:400;
-  font-size:52px;
-  margin:8px 0 6px;
+  font-size:64px;
+  line-height:1.1;
+  margin:6px 0 4px;
+  color:var(--ink);
 }
 .hero-inner p{
   margin:0;
-  font-size:15px;
+  font-size:16px;
   line-height:1.6;
   max-width:520px;
-  opacity:.95;
 }
 
 /* ============================================================
    MENU SECTIONS
    ============================================================ */
 .menu{
-  max-width:1000px;
+  max-width:1140px;
   margin:0 auto;
-  padding:0 22px;
+  padding:0 24px;
 }
 .section{
-  padding:56px 0 46px;
+  padding:52px 0 44px;
   border-bottom:1px solid var(--line);
-  scroll-margin-top:80px; /* keeps sticky nav from covering the heading when jumped to */
+  scroll-margin-top:84px;
 }
 .section:last-of-type{border-bottom:none}
 .section-head{
@@ -141,35 +166,54 @@ body{
   align-items:baseline;
   justify-content:space-between;
   gap:12px;
-  margin-bottom:26px;
+  margin-bottom:22px;
 }
 .section-head h2{
-  font-family:Georgia, serif;
+  font-family:var(--font-script);
   font-weight:400;
-  font-size:30px;
+  font-size:48px;
+  line-height:1.2;
   margin:0;
+  color:var(--ink);
 }
 .section-head .count{
   color:var(--muted);
   font-size:12px;
+  font-weight:700;
   letter-spacing:.06em;
   text-transform:uppercase;
 }
+/* group bands — same look as the category headers on the booking page */
 .subhead{
-  font-family:Georgia, serif;
-  font-size:18px;
-  margin:30px 0 10px;
+  font-family:var(--font-body);
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  line-height:1.5;
+  margin:28px 0 18px;
+  padding:14px 16px;
+  background:var(--soft);
+  color:var(--ink);
+  border-left:3px solid var(--accent);
+  border-radius:6px;
 }
 .subhead:first-child{margin-top:0}
 table{
   width:100%;
   border-collapse:collapse;
-  font-size:14px;
+  font-size:15px;
 }
 td{
-  padding:14px 0;
+  padding:16px 0;
   border-bottom:1px solid var(--line);
   vertical-align:top;
+  line-height:1.5;
+}
+td strong{
+  font-weight:700;
+  font-size:16px;
+  color:#442b36;
 }
 tr:last-child td{border-bottom:none}
 td.price{
@@ -177,26 +221,27 @@ td.price{
   white-space:nowrap;
   padding-left:18px;
   font-weight:600;
+  color:var(--ink);
 }
 .desc{
   display:block;
   margin-top:4px;
   color:var(--muted);
-  font-size:12.5px;
-  line-height:1.45;
+  font-size:14px;
+  line-height:1.65;
   max-width:640px;
 }
 .note{
   margin-top:14px;
   color:var(--muted);
-  font-size:12px;
-  line-height:1.5;
+  font-size:13px;
+  line-height:1.6;
 }
 .placeholder{
   padding:8px 0 2px;
   color:var(--muted);
   font-style:italic;
-  font-size:14px;
+  font-size:15px;
 }
 
 /* ============================================================
@@ -205,9 +250,11 @@ td.price{
 footer{
   text-align:center;
   background:var(--soft);
+  border-top:1px solid var(--line);
   padding:40px 18px;
-  font-size:13px;
+  font-size:14px;
   line-height:1.7;
+  color:var(--ink);
 }
 footer .foot-book{
   display:inline-block;
@@ -215,30 +262,40 @@ footer .foot-book{
   background:var(--accent);
   color:#fff;
   text-decoration:none;
-  font-size:12px;
-  letter-spacing:.06em;
-  text-transform:uppercase;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:0;
+  text-transform:none;
   padding:12px 24px;
-  border-radius:2px;
+  border-radius:8px;
 }
+footer .foot-book:hover{background:var(--accent-dark)}
+
+/* focus ring, as on the booking page */
+a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
 
 /* ============================================================
    MOBILE
    ============================================================ */
 @media(max-width:700px){
   .nav-inner{flex-wrap:wrap; padding:12px 16px}
+  .nav-brand{font-size:30px}
   .nav-links{
     order:3;
     width:100%;
     gap:12px 16px;
+    font-size:13px;
     overflow-x:auto;
     padding-bottom:2px;
   }
-  .hero{min-height:0vh}
-  .hero-inner h1{font-size:38px}
-  .section{padding:40px 0 34px}
-  .section-head h2{font-size:24px}
-  table{font-size:13px}
+  .hero{aspect-ratio:3 / 2; background-position:center 30%}
+  .hero-inner{padding:0 16px 20px}
+  .hero-inner h1{font-size:46px}
+  .section{padding:38px 0 32px}
+  .section-head h2{font-size:38px}
+  .subhead{font-size:14px; letter-spacing:.06em; padding:12px; margin-top:18px}
+  table{font-size:15px}
+  td strong{font-size:16px}
   td.price{padding-left:12px}
 }
 </style>
