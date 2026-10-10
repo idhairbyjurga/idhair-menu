@@ -105,17 +105,17 @@ a{color:var(--accent)}
 .book-btn:hover{background:var(--accent-dark)}
 
 /* ============================================================
-   HERO — wide short banner, same proportions as the booking page
-   (SimplyBook background image is 1920 x 600, shown as "cover")
+   HERO — identical to the booking page banner:
+   same image file (1920 x 600 export), 600px tall box,
+   background-size cover, centred. 570px tall on phones.
    ============================================================ */
 .hero{
   position:relative;
-  aspect-ratio:16 / 5;
-  min-height:0;
-  background:
-    url("menu-new-image.png") center 35% / cover no-repeat,
-    #bfe3ea;
+  width:100%;
+  min-height:600px;
+  background:url("hero-banner.png") center center / cover no-repeat #bfe3ea;
 }
+
 /* ============================================================
    HOME TABS — white bar under the photo, like the booking page.
    The single tab is drawn as the active tab (5px plum line) but is
@@ -308,6 +308,9 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
 /* ============================================================
    MOBILE
    ============================================================ */
+@media(max-width:767px){
+  .hero{min-height:570px}
+}
 @media(max-width:700px){
   .nav-inner{flex-wrap:wrap; padding:12px 16px}
   .nav-brand{font-size:30px}
@@ -319,7 +322,6 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
     overflow-x:auto;
     padding-bottom:2px;
   }
-  .hero{aspect-ratio:3 / 2; background-position:center 30%}
   .home-tabs-inner{padding:0 16px}
   .home-tab{padding:12px 0; min-height:48px}
   .section{padding:38px 0 32px}
