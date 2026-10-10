@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>iDHair by Jurga — Services</title>
-   <meta property="og:title" content="iDHair by Jurga — Services">
+<title>idresshair by Jurga — Services</title>
+   <meta property="og:title" content="idresshair by Jurga — Services">
 <meta property="og:description" content="Hair Personally Addressed">
 <meta property="og:image" content="https://idresshair.netlify.app/menu-new-image.png">
 <meta property="og:url" content="https://idresshair.netlify.app/">
@@ -339,7 +339,7 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
   <div class="nav-inner">
     <div class="nav-brand">idresshair by Jurga</div>
     <div class="nav-links" id="nav-links"></div>
-    <a class="book-btn" id="book-btn-top" href="#" target="_blank" rel="noopener">Book Now</a>
+    <a class="book-btn" id="book-btn-top" href="https://wa.me/971566579902" target="_blank" rel="noopener">Book Now</a>
   </div>
 </nav>
 
@@ -358,7 +358,7 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
 <main class="menu" id="menu"></main>
 
 <footer>
-  iDHair • Mira, Dubai<br>
+  idresshair • Mira, Dubai<br>
 Hair Services &amp; Prices
   <br>
   <a class="foot-book" id="book-btn-bottom" href="#" target="_blank" rel="noopener">Book Your Appointment</a>
@@ -383,9 +383,9 @@ async function buildMenu(){
   eyebrowEl.hidden = !eyebrowEl.textContent.trim();
   subtitleEl.hidden = !subtitleEl.textContent.trim();
 
-  // Book buttons
-  document.getElementById('book-btn-top').href = data.bookUrl || '#';
-  document.getElementById('book-btn-bottom').href = data.bookUrl || '#';
+  // Book buttons: the header button is a WhatsApp link (set in the HTML above);
+  // the footer button opens the online booking page from data/menu.json
+  document.getElementById('book-btn-bottom').href = data.bookUrl || 'https://idresshair.simplybook.me';
 
   // Nav links (built from sections, so a new section you add in the CMS
   // automatically gets a nav link too)
