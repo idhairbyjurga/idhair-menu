@@ -112,40 +112,66 @@ a{color:var(--accent)}
   position:relative;
   aspect-ratio:16 / 5;
   min-height:0;
-  display:flex;
-  align-items:flex-end;
   background:
     url("menu-new-image.png") center 35% / cover no-repeat,
     #bfe3ea;
 }
-.hero-inner{
-  max-width:1140px;
-  width:100%;
-  margin:0 auto;
-  padding:0 24px 28px;
-  color:var(--ink);
+/* ============================================================
+   HOME TABS — white bar under the photo, like the booking page.
+   The single tab is drawn as the active tab (5px plum line) but is
+   plain text, not a link.
+   ============================================================ */
+.home-tabs{
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
 }
-.hero-inner .eyebrow{
+.home-tabs-inner{
+  max-width:1140px;
+  margin:0 auto;
+  padding:0 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+.home-tab{
+  position:relative;
+  display:inline-block;
+  min-width:180px;
+  margin:0;
+  padding:33px 40px;
+  font-family:var(--font-body);
+  font-size:16px;
+  font-weight:600;
+  line-height:1.4;
+  color:var(--ink);
+  cursor:default;
+  user-select:none;
+}
+.home-tab.active::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:5px;
+  background:var(--accent);
+}
+.home-tabs .eyebrow{
+  padding-top:18px;
   font-size:13px;
   font-weight:700;
   letter-spacing:.1em;
   text-transform:uppercase;
-  opacity:.85;
+  color:var(--muted);
 }
-.hero-inner h1{
-  font-family:var(--font-script);
-  font-weight:400;
-  font-size:64px;
-  line-height:1.1;
-  margin:6px 0 4px;
-  color:var(--ink);
-}
-.hero-inner p{
+.home-tabs .hero-subtitle{
   margin:0;
+  padding:18px 0 22px;
   font-size:16px;
   line-height:1.6;
-  max-width:520px;
+  max-width:640px;
+  color:var(--muted);
 }
+[hidden]{display:none !important}
 
 /* ============================================================
    MENU SECTIONS
@@ -289,8 +315,8 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
     padding-bottom:2px;
   }
   .hero{aspect-ratio:3 / 2; background-position:center 30%}
-  .hero-inner{padding:0 16px 20px}
-  .hero-inner h1{font-size:46px}
+  .home-tabs-inner{padding:0 16px}
+  .home-tab{padding:12px 24px; min-height:48px}
   .section{padding:38px 0 32px}
   .section-head h2{font-size:38px}
   .subhead{font-size:14px; letter-spacing:.06em; padding:12px; margin-top:18px}
@@ -310,13 +336,17 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
   </div>
 </nav>
 
-<section class="hero" id="hero">
-  <div class="hero-inner">
+<section class="hero" id="hero"></section>
+
+<!-- Tab bar under the photo, same look as the booking page's home tabs.
+     The tab text still comes from the Hero Banner "Big Title" in the admin panel. -->
+<div class="home-tabs">
+  <div class="home-tabs-inner">
     <div class="eyebrow" id="hero-eyebrow"></div>
-    <h1 id="hero-title"></h1>
-    <p id="hero-subtitle"></p>
+    <h1 id="hero-title" class="home-tab active"></h1>
+    <p class="hero-subtitle" id="hero-subtitle"></p>
   </div>
-</section>
+</div>
 
 <main class="menu" id="menu"></main>
 
@@ -338,9 +368,13 @@ async function buildMenu(){
   const data = await res.json();
 
   // Hero
-  document.getElementById('hero-eyebrow').textContent = data.hero.eyebrow || '';
+  const eyebrowEl = document.getElementById('hero-eyebrow');
+  const subtitleEl = document.getElementById('hero-subtitle');
+  eyebrowEl.textContent = data.hero.eyebrow || '';
   document.getElementById('hero-title').textContent = data.hero.title || '';
-  document.getElementById('hero-subtitle').textContent = data.hero.subtitle || '';
+  subtitleEl.textContent = data.hero.subtitle || '';
+  eyebrowEl.hidden = !eyebrowEl.textContent.trim();
+  subtitleEl.hidden = !subtitleEl.textContent.trim();
 
   // Book buttons
   document.getElementById('book-btn-top').href = data.bookUrl || '#';
