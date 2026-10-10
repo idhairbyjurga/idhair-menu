@@ -119,6 +119,14 @@ a{color:var(--accent)}
   width:100%;
   min-height:600px;
   background:url("hero-banner.png") center center / cover no-repeat #bfe3ea;
+  overflow:hidden;
+}
+/* vector lettering, cropped and scaled exactly like the background photo */
+.hero .hero-text{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center center;
+  pointer-events:none; user-select:none;
 }
 
 /* ============================================================
@@ -350,7 +358,10 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
   </div>
 </nav>
 
-<section class="hero" id="hero"></section>
+<section class="hero" id="hero">
+  <!-- Brand lettering redrawn as vector so it stays sharp; the photo itself is untouched -->
+  <img class="hero-text" src="hero-text.svg" alt="i.dresshair by Jurga – iDHair">
+</section>
 
 <!-- Tab bar under the photo, same look as the booking page's home tabs.
      The tab text still comes from the Hero Banner "Big Title" in the admin panel. -->
