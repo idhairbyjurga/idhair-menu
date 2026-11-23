@@ -56,6 +56,16 @@ collections:
               - { label: "Text (leave an empty line between paragraphs)", name: "text", widget: "text" }
               - { label: "Photo (shown with rounded corners; empty = placeholder)", name: "image", widget: "image", required: false }
 
+          - label: "Location (map after the price list)"
+            name: "location"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Area shown on the page", name: "area", widget: "string" }
+              - { label: "Place searched on Google Maps (keep it general, e.g. Mira, Reem, Dubai)", name: "mapQuery", widget: "string" }
+              - { label: "Map zoom (12 = wider area, 15 = closer)", name: "zoom", widget: "number", value_type: "int", min: 10, max: 17, default: 13 }
+
           - label: "Menu Sections"
             name: "sections"
             widget: "list"

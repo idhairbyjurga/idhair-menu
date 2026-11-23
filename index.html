@@ -397,6 +397,58 @@ a{color:var(--ink)}
 .photo-empty svg{width:44px; height:44px}
 
 /* ============================================================
+   LOCATION — area on the left, map on the right
+   ============================================================ */
+.location-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);
+  gap:48px;
+  align-items:center;
+}
+.location h2{
+  text-align:left;
+  font-size:46px;
+  margin-bottom:18px;
+}
+.location-area{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0;
+  font-size:17px;
+}
+.location-area svg{width:24px; height:24px; flex:none}
+.location-link{
+  display:inline-block;
+  margin-top:16px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border-bottom:1px solid var(--ink);
+  padding-bottom:2px;
+}
+.map{
+  height:420px;
+  border-radius:24px;        /* small enough to keep Google's map labels visible */
+  overflow:hidden;
+  background:#EAD9D3;
+}
+.map iframe{display:block; width:100%; height:100%; border:0}
+
+/* visually hidden, still read by screen readers */
+.sr-only{
+  position:absolute;
+  width:1px; height:1px;
+  margin:-1px; padding:0;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* ============================================================
    FOOTER — logo as on the PDF pages, then the buttons
    ============================================================ */
 footer{
@@ -474,6 +526,11 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:4px}
   .philosophy h2{text-align:center; font-size:34px}
   .philosophy-text p{font-size:15px}
   .photo{width:100%; max-width:420px; margin:0 auto}
+  .location-grid{grid-template-columns:1fr; gap:24px}
+  .location h2{text-align:center; font-size:34px; margin-bottom:12px}
+  .location-text{text-align:center}
+  .location-area{justify-content:center; font-size:16px}
+  .map{height:320px}
 }
 </style>
 </head>
@@ -565,7 +622,8 @@ async function buildMenu(){
 
   // About (between the welcome line and the services)
   if (about) {
-    html += '<section class="section about" id="about"><h2>' + about.title + '</h2>';
+    // the title is not shown (the menu link still jumps here); kept for screen readers
+    html += '<section class="section about" id="about"><h2 class="sr-only">' + about.title + '</h2>';
     if (about.intro) {
       html += '<div class="about-intro">' + about.intro.split(/\n\s*\n/).map(function(p){
         return '<p>' + p.trim() + '</p>';
@@ -641,6 +699,21 @@ async function buildMenu(){
     out += '</section>';
     return out;
   }).join('');
+
+  // Location: area text left, Google map right (area only, no street address)
+  const loc = data.location && data.location.mapQuery ? data.location : null;
+  if (loc) {
+    const q = encodeURIComponent(loc.mapQuery);
+    html += '<section class="section location" id="location"><div class="location-grid">';
+    html += '<div class="location-text"><h2>' + (loc.title || 'Location') + '</h2>' +
+      '<p class="location-area"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">' +
+      '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>' +
+      '<span>' + (loc.area || loc.mapQuery) + '</span></p>' +
+      '<a class="location-link" href="https://www.google.com/maps/search/?api=1&amp;query=' + q + '" target="_blank" rel="noopener">Open in Google Maps</a></div>';
+    html += '<div class="map"><iframe title="Map: ' + (loc.area || loc.mapQuery) + '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen ' +
+      'src="https://maps.google.com/maps?q=' + q + '&amp;z=' + (loc.zoom || 13) + '&amp;output=embed"></iframe></div>';
+    html += '</div></section>';
+  }
 
   document.getElementById('menu').innerHTML = html;
 }
