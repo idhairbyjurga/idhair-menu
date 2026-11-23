@@ -5,6 +5,25 @@
     "subtitle": " "
   },
   "bookUrl": "https://idresshair.simplybook.me",
+  "welcome": "Welcome",
+  "about": {
+    "title": "About Us",
+    "intro": "i.dresshair by Jurga is a personal hair service in Mira, Dubai, led by European hair stylist Jurga. Every appointment is built around you: your hair, your routine and the look you want to wear every day.",
+    "points": [
+      {
+        "title": "Free Consultation",
+        "text": "Each visit starts with a conversation about your hair history and the result you have in mind, so the cut, colour or care is planned for you. Consultations are free."
+      },
+      {
+        "title": "Colour With Care",
+        "text": "All highlight services include a customised toner and WellaPlex bond protection, for colour that stays bright and hair that stays strong."
+      },
+      {
+        "title": "Easy Booking",
+        "text": "Book online at any time, or message us on WhatsApp with questions or to arrange your appointment."
+      }
+    ]
+  },
   "sections": [
     {
       "id": "styling",

@@ -9,27 +9,27 @@
 <meta property="og:image" content="https://idresshair.netlify.app/menu-new-image.png">
 <meta property="og:url" content="https://idresshair.netlify.app/">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#F5F1E8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Allison&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Bodoni Moda is only a stand-in for Didot on devices that don't have Didot built in
+     (Apple devices have it, so they show the same Didot as the PDF menu) -->
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   STYLE MATCHED TO idresshair.simplybook.me (bookingtroll theme)
+   STYLE MATCHED TO THE PDF MENU (iDHair - Complete Menu, Nov 2026)
+   cream page, burgundy text, Didot headings, Arial text.
    COLORS — edit these lines to change the whole site's palette
    ============================================================ */
 :root{
-  --ink:#333333;       /* main text  (SimplyBook dark_font_color) */
-  --ink-2:#332F2D;     /* serif heading text on booking page */
-  --muted:#6f6a66;     /* descriptions, secondary text */
-  --line:#e5d9ce;      /* thin dividing lines / card borders */
-  --soft:#ede3d7;      /* beige band (SimplyBook sb_available) */
-  --paper:#ffffff;     /* page background (SimplyBook body_bg_color) */
-  --accent:#861657;    /* plum base colour (SimplyBook sb_base_color) */
-  --accent-dark:#6d1246;
-  --beige-btn:#d9c7b8; /* SimplyBook btn_color_1 */
-  --font-body:"Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-script:"Allison", cursive;
-  --font-serif:Georgia, "Times New Roman", serif;
+  --paper:#F5F1E8;     /* page background (PDF cream) */
+  --ink:#8A031A;       /* all text, lines and buttons (PDF burgundy) */
+  --ink-dark:#6E0215;  /* button hover */
+  --on-ink:#FBF0E1;    /* text on burgundy buttons (PDF cream lettering) */
+  --line:#E2C6C3;      /* thin dividing lines */
+  --font-serif:"Didot", "Didot LT STD", "Bodoni Moda", "Bodoni 72", Georgia, serif;
+  --font-body:Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --pc:76px;           /* width of each price column (Short / Medium / Long) */
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -41,7 +41,30 @@ body{
   color:var(--ink);
   background:var(--paper);
 }
-a{color:var(--accent)}
+a{color:var(--ink)}
+[hidden]{display:none !important}
+
+/* shared button looks */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  min-height:44px;
+  padding:11px 20px;
+  border:1px solid var(--ink);
+  border-radius:2px;
+  font-family:var(--font-body);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+  white-space:nowrap;
+  line-height:1.2;
+}
+.btn-solid{background:var(--ink); color:var(--on-ink)}
+.btn-solid:hover{background:var(--ink-dark); border-color:var(--ink-dark)}
 
 /* ============================================================
    STICKY NAV — brand + jump links + Book Now button
@@ -50,7 +73,7 @@ a{color:var(--accent)}
   position:sticky;
   top:0;
   z-index:50;
-  background:rgba(255,255,255,.94);
+  background:rgba(245,241,232,.95);
   backdrop-filter:blur(6px);
   border-bottom:1px solid var(--line);
 }
@@ -59,55 +82,34 @@ a{color:var(--accent)}
   margin:0 auto;
   padding:12px 24px;
   display:grid;
-  grid-template-columns:1fr auto 1fr;   /* brand | links | button */
+  grid-template-columns:auto 1fr auto;   /* brand | links | button */
   align-items:center;
   gap:16px;
 }
 .nav-brand{
-  font-family:var(--font-script);
+  font-family:var(--font-serif);
   font-weight:400;
-  font-size:34px;
+  font-size:23px;
   line-height:1;
   color:var(--ink);
   white-space:nowrap;
-  text-align:left;
-  justify-self:start;
-  align-self:baseline;   /* script sits on the same text line as the menu links */
 }
-.nav-links{align-self:baseline}
-.nav-inner .book-btn{justify-self:end}
 .nav-links{
   display:flex;
-  flex-wrap:wrap;
-  gap:22px;
-  font-size:14px;
+  justify-content:center;
+  gap:20px;
+  font-size:12px;
   font-weight:700;
-  letter-spacing:0;
-  text-transform:none;
-}
-.nav-links a{
-  color:var(--ink);
-  text-decoration:none;
-  border-bottom:2px solid transparent;
-  padding-bottom:2px;
-}
-.nav-links a:hover{color:var(--accent); border-bottom-color:var(--accent)}
-.book-btn{
-  background:var(--accent);
-  color:#fff;
-  font-size:14px;
-  font-weight:600;
-  letter-spacing:0;
-  text-transform:none;
-  text-decoration:none;
-  padding:11px 22px;
-  min-height:44px;
-  display:inline-flex;
-  align-items:center;
-  border-radius:8px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
   white-space:nowrap;
 }
-.book-btn:hover{background:var(--accent-dark)}
+.nav-links a{
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  padding:4px 0 3px;
+}
+.nav-links a:hover{border-bottom-color:var(--ink)}
 
 /* ============================================================
    HERO — identical to the booking page banner:
@@ -130,9 +132,8 @@ a{color:var(--accent)}
 }
 
 /* ============================================================
-   HOME TABS — white bar under the photo, like the booking page.
-   The single tab is drawn as the active tab (5px plum line) but is
-   plain text, not a link.
+   HOME TABS — bar under the photo. The single title tab fills the
+   left half and is drawn as the active tab (plain text, not a link).
    ============================================================ */
 .home-tabs{
   background:var(--paper);
@@ -144,9 +145,8 @@ a{color:var(--accent)}
   padding:0 24px;
   display:flex;
   flex-wrap:wrap;
-  align-items:flex-start;
+  align-items:center;
 }
-/* one tab = the left half, as each of the two tabs is half width on the booking page */
 .home-tab{
   position:relative;
   display:block;
@@ -154,11 +154,13 @@ a{color:var(--accent)}
   width:50%;
   min-width:180px;
   margin:0;
-  padding:33px 0;
+  padding:30px 0;
   text-align:center;
   font-family:var(--font-body);
-  font-size:16px;
-  font-weight:600;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
   line-height:1.4;
   color:var(--ink);
   cursor:default;
@@ -168,18 +170,17 @@ a{color:var(--accent)}
   content:"";
   position:absolute;
   left:0; right:0; bottom:0;
-  height:5px;
-  background:var(--accent);
+  height:3px;
+  background:var(--ink);
 }
 .home-tabs .eyebrow,
 .home-tabs .hero-subtitle{flex:0 0 100%; text-align:left}
 .home-tabs .eyebrow{
   padding-top:18px;
-  font-size:13px;
+  font-size:12px;
   font-weight:700;
-  letter-spacing:.1em;
+  letter-spacing:.12em;
   text-transform:uppercase;
-  color:var(--muted);
 }
 .home-tabs .hero-subtitle{
   margin:0;
@@ -187,164 +188,243 @@ a{color:var(--accent)}
   font-size:16px;
   line-height:1.6;
   max-width:640px;
-  color:var(--muted);
 }
-[hidden]{display:none !important}
 
 /* ============================================================
-   MENU SECTIONS
+   MENU — laid out like the PDF pages
    ============================================================ */
 .menu{
-  max-width:1140px;
+  max-width:880px;
   margin:0 auto;
   padding:0 24px;
 }
-.section{
-  padding:52px 0 44px;
-  border-bottom:1px solid var(--line);
-  scroll-margin-top:84px;
-}
-.section:last-of-type{border-bottom:none}
-.section-head{
-  display:flex;
-  align-items:baseline;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:22px;
-}
-.section-head h2{
-  font-family:var(--font-script);
-  font-weight:400;
-  font-size:48px;
-  line-height:1.2;
+.welcome{
   margin:0;
-  color:var(--ink);
+  padding-top:56px;
+  text-align:center;
+  font-family:var(--font-serif);
+  font-size:22px;
+  letter-spacing:.04em;
 }
-.section-head .count{
-  color:var(--muted);
-  font-size:12px;
+.menu-intro{
+  margin:6px 0 0;
+  text-align:center;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.section{
+  padding:52px 0 48px;
+  scroll-margin-top:80px;
+}
+/* short centred line between sections, like the line under the PDF logo */
+.section + .section::before{
+  content:"";
+  display:block;
+  width:140px;
+  height:1px;
+  margin:0 auto 52px;
+  background:var(--ink);
+  opacity:.55;
+}
+.section h2{
+  margin:0 0 34px;
+  text-align:center;
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:54px;
+  line-height:1.1;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+
+/* a service group: heading row (title + SHORT / MEDIUM / LONG) then the rows */
+.group{margin-top:34px}
+.group:first-of-type{margin-top:0}
+.group-head,
+.item{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) repeat(3, var(--pc));
+  column-gap:12px;
+}
+.group-head{
+  align-items:end;
+  margin-bottom:12px;
+}
+.subhead{
+  grid-column:1;
+  margin:0;
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:30px;
+  line-height:1.15;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.col-label.c2{grid-column:2}
+.col-label.c3{grid-column:3}
+.col-label.c4{grid-column:4}
+.col-label{
+  grid-row:1;
+  text-align:right;
+  font-size:10.5px;
   font-weight:700;
   letter-spacing:.06em;
   text-transform:uppercase;
+  padding-bottom:5px;
 }
-/* group bands — same look as the category headers on the booking page */
-.subhead{
-  font-family:var(--font-body);
-  font-size:16px;
-  font-weight:700;
-  letter-spacing:.09em;
-  text-transform:uppercase;
-  line-height:1.5;
-  margin:28px 0 18px;
-  padding:14px 16px;
-  background:var(--soft);
-  color:var(--ink);
-  border-left:3px solid var(--accent);
-  border-radius:6px;
+.item{
+  padding:13px 0;
+  align-items:baseline;
 }
-.subhead:first-child{margin-top:0}
-table{
-  width:100%;
-  border-collapse:collapse;
+.item .name{
+  grid-column:1;
   font-size:15px;
+  letter-spacing:.02em;
+  text-transform:uppercase;
 }
-td{
-  padding:16px 0;
-  border-bottom:1px solid var(--line);
-  vertical-align:top;
-  line-height:1.5;
-}
-td strong{
-  font-weight:700;
-  font-size:16px;
-  color:#442b36;
-}
-tr:last-child td{border-bottom:none}
-td.price{
+.item .p{
   text-align:right;
+  font-size:15px;
   white-space:nowrap;
-  padding-left:18px;
-  font-weight:600;
-  color:var(--ink);
 }
-.desc{
-  display:block;
-  margin-top:4px;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.65;
-  max-width:640px;
+/* single price: sits under the LONG column; the name may use the empty columns */
+.item.single .name{grid-column:1 / 4}
+.item .p-all{grid-column:4; justify-self:end}
+.item .desc{
+  grid-column:1;
+  margin-top:3px;
+  max-width:560px;
+  font-size:13.5px;
+  line-height:1.55;
 }
 .note{
-  margin-top:14px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
+  max-width:560px;
+  margin:30px auto 0;
+  text-align:center;
+  font-size:12.5px;
+  line-height:1.65;
 }
 .placeholder{
-  padding:8px 0 2px;
-  color:var(--muted);
-  font-style:italic;
+  text-align:center;
   font-size:15px;
+  font-style:italic;
 }
 
 /* ============================================================
-   FOOTER
+   ABOUT US
+   ============================================================ */
+.about-intro{
+  max-width:660px;
+  margin:0 auto;
+  text-align:center;
+  font-size:16px;
+  line-height:1.75;
+}
+.about-intro p{margin:0 0 14px}
+.about-points{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:28px;
+  margin-top:40px;
+}
+.about-point{text-align:center}
+.about-point h3{
+  margin:0 0 10px;
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:21px;
+  line-height:1.2;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.about-point p{
+  margin:0;
+  font-size:14px;
+  line-height:1.65;
+}
+
+/* ============================================================
+   FOOTER — logo as on the PDF pages, then the buttons
    ============================================================ */
 footer{
   text-align:center;
-  background:var(--soft);
+  background:var(--paper);
   border-top:1px solid var(--line);
-  padding:40px 18px;
-  font-size:14px;
+  padding:56px 18px 48px;
+  font-size:13px;
   line-height:1.7;
-  color:var(--ink);
 }
-footer .foot-book{
-  display:inline-block;
+.foot-logo{
+  display:block;
+  width:242px;
+  max-width:62%;
+  height:auto;
+  margin:0 auto;
+}
+.foot-place{
   margin-top:14px;
-  background:var(--accent);
-  color:#fff;
-  text-decoration:none;
-  font-size:14px;
-  font-weight:600;
-  letter-spacing:0;
-  text-transform:none;
-  padding:12px 24px;
-  border-radius:8px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
 }
-footer .foot-book:hover{background:var(--accent-dark)}
+.foot-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-top:28px;
+}
 
-/* focus ring, as on the booking page */
-a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
+/* focus ring */
+a:focus-visible{outline:2px solid var(--ink); outline-offset:4px}
 
 /* ============================================================
-   MOBILE
+   SMALLER SCREENS
    ============================================================ */
-@media(max-width:767px){
-  .hero{min-height:570px}
-}
-@media(max-width:700px){
-  .nav-inner{grid-template-columns:1fr auto; padding:12px 16px}
-  .nav-brand{font-size:30px; grid-row:1; grid-column:1}
+@media(max-width:1080px){
+  .nav-inner{grid-template-columns:1fr auto; row-gap:8px}
+  .nav-brand{grid-row:1; grid-column:1}
   .nav-inner .book-btn{grid-row:1; grid-column:2}
   .nav-links{
     grid-row:2;
     grid-column:1 / -1;
-    width:100%;
-    gap:12px 16px;
-    font-size:13px;
+    justify-content:flex-start;
     overflow-x:auto;
-    padding-bottom:2px;
+    scrollbar-width:none;
+    -webkit-mask-image:linear-gradient(to right, #000 88%, transparent);
+            mask-image:linear-gradient(to right, #000 88%, transparent);
   }
+  .nav-links::-webkit-scrollbar{display:none}
+  .section{scroll-margin-top:110px}
+}
+@media(max-width:767px){
+  .hero{min-height:570px}
+}
+@media(max-width:700px){
+  :root{--pc:50px}
+  .nav-inner{padding:10px 16px}
+  .nav-brand{font-size:21px}
+  .nav-links{gap:18px; font-size:11px}
+  .nav-inner .book-btn{padding:10px 14px}
   .home-tabs-inner{padding:0 16px}
-  .home-tab{padding:12px 0; min-height:48px}
-  .section{padding:38px 0 32px}
-  .section-head h2{font-size:38px}
-  .subhead{font-size:14px; letter-spacing:.06em; padding:12px; margin-top:18px}
-  table{font-size:15px}
-  td strong{font-size:16px}
-  td.price{padding-left:12px}
+  .home-tab{padding:12px 0; min-height:48px; display:flex; align-items:center; justify-content:center}
+  .menu{padding:0 16px}
+  .welcome{padding-top:40px; font-size:20px}
+  .section{padding:40px 0 36px}
+  .section + .section::before{margin-bottom:40px}
+  .section h2{font-size:34px; margin-bottom:26px}
+  /* phones: group title gets its own line, column labels go on the row below */
+  .subhead{grid-column:1 / -1; font-size:22px; margin-bottom:10px}
+  .col-label{grid-row:2; font-size:9.5px; letter-spacing:.03em}
+  .item{column-gap:8px}
+  .item .name{font-size:14px; letter-spacing:.01em}
+  .item .p{font-size:14px}
+  .item .desc{grid-column:1 / -1; font-size:13px}
+  .about-intro{font-size:15px}
+  .about-points{grid-template-columns:1fr; gap:26px; margin-top:30px}
 }
 </style>
 </head>
@@ -354,7 +434,7 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
   <div class="nav-inner">
     <div class="nav-brand">i.dresshair by Jurga</div>
     <div class="nav-links" id="nav-links"></div>
-    <a class="book-btn" id="book-btn-top" href="https://wa.me/971566579902" target="_blank" rel="noopener">Book Now</a>
+    <a class="btn btn-solid book-btn" id="book-btn-top" href="https://wa.me/971566579902" target="_blank" rel="noopener">Book Now</a>
   </div>
 </nav>
 
@@ -376,10 +456,12 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:4px}
 <main class="menu" id="menu"></main>
 
 <footer>
-  i.dresshair • Mira, Dubai<br>
-Hair Services &amp; Prices
-  <br>
-  <a class="foot-book" id="book-btn-bottom" href="#">Book Your Appointment</a>
+  <!-- Logo, line and "i.dresshair by Jurga" exactly as on the PDF pages (one vector file) -->
+  <img class="foot-logo" src="logo-idhair.svg" alt="iDHair — i.dresshair by Jurga" width="242" height="186">
+  <div class="foot-place">Mira, Dubai</div>
+  <div class="foot-buttons">
+    <a class="btn btn-solid" id="book-btn-bottom" href="https://idresshair.simplybook.me">Book Your Appointment</a>
+  </div>
 </footer>
 
 <script>
@@ -388,6 +470,15 @@ Hair Services &amp; Prices
    To change prices/services, DO NOT edit this file —
    edit data/menu.json directly, or use the /admin panel.
    ============================================================ */
+
+// "120 / 140 / 160 AED" -> three columns (Short / Medium / Long);
+// anything else ("60 AED", "FREE") -> one value under the Long column
+function splitPrice(price){
+  var clean = String(price || '').replace(/\s*AED\s*$/i, '').trim();
+  var parts = clean.split('/').map(function(s){ return s.trim(); });
+  return parts.length === 3 ? parts : [clean];
+}
+
 async function buildMenu(){
   const res = await fetch('data/menu.json', { cache: 'no-store' });
   const data = await res.json();
@@ -405,50 +496,82 @@ async function buildMenu(){
   // the footer button opens the online booking page from data/menu.json
   document.getElementById('book-btn-bottom').href = data.bookUrl || 'https://idresshair.simplybook.me';
 
+  const about = data.about && data.about.title ? data.about : null;
+
   // Nav links (built from sections, so a new section you add in the CMS
-  // automatically gets a nav link too)
+  // automatically gets a nav link too), then About Us
   const navEl = document.getElementById('nav-links');
   navEl.innerHTML = data.sections.map(function(s){
     return '<a href="#' + s.id + '">' + s.title + '</a>';
-  }).join('');
+  }).join('') + (about ? '<a href="#about">' + about.title + '</a>' : '');
+
+  // Welcome line
+  let html = '';
+  if (data.welcome && data.welcome.trim()) {
+    html += '<p class="welcome">· ' + data.welcome.trim() + ' ·</p>';
+    html += '<p class="menu-intro">All prices in AED</p>';
+  }
 
   // Sections
-  const menuEl = document.getElementById('menu');
-  menuEl.innerHTML = data.sections.map(function(section){
+  html += data.sections.map(function(section){
     let itemCount = 0;
     (section.groups || []).forEach(function(g){ itemCount += (g.items || []).length; });
 
-    let html = '<section class="section" id="' + section.id + '">';
-    html += '<div class="section-head"><h2>' + section.title + '</h2>';
-    if(itemCount > 0){
-      html += '<span class="count">' + itemCount + (itemCount === 1 ? ' service' : ' services') + '</span>';
-    }
-    html += '</div>';
+    let out = '<section class="section" id="' + section.id + '">';
+    out += '<h2>' + section.title + '</h2>';
 
     (section.groups || []).forEach(function(group){
-      if(group.subhead){
-        html += '<div class="subhead">' + group.subhead + '</div>';
-      }
-      html += '<table>';
-      (group.items || []).forEach(function(item){
-        html += '<tr><td><strong>' + item.name + '</strong>' +
-          (item.desc ? '<span class="desc">' + item.desc + '</span>' : '') +
-          '</td><td class="price">' + item.price + '</td></tr>';
+      const items = group.items || [];
+      const threeCols = items.some(function(it){ return splitPrice(it.price).length === 3; });
+
+      out += '<div class="group"><div class="group-head">';
+      out += group.subhead ? '<h3 class="subhead">' + group.subhead + '</h3>' : '<span></span>';
+      out += threeCols
+        ? '<span class="col-label c2">Short</span><span class="col-label c3">Medium</span><span class="col-label c4">Long</span>'
+        : '<span class="col-label c4">AED</span>';
+      out += '</div>';
+
+      items.forEach(function(item){
+        const prices = splitPrice(item.price);
+        out += '<div class="item' + (prices.length === 3 ? '' : ' single') + '"><div class="name">' + item.name + '</div>';
+        out += prices.length === 3
+          ? prices.map(function(p){ return '<div class="p">' + p + '</div>'; }).join('')
+          : '<div class="p p-all">' + prices[0] + '</div>';
+        if (item.desc) out += '<div class="desc">' + item.desc + '</div>';
+        out += '</div>';
       });
-      html += '</table>';
+      out += '</div>';
     });
 
     if(itemCount === 0 && section.placeholder){
-      html += '<div class="placeholder">' + section.placeholder + '</div>';
+      out += '<div class="placeholder">' + section.placeholder + '</div>';
     }
 
     if(section.note){
-      html += '<div class="note">' + section.note + '</div>';
+      out += '<div class="note">' + section.note + '</div>';
     }
 
-    html += '</section>';
-    return html;
+    out += '</section>';
+    return out;
   }).join('');
+
+  // About Us
+  if (about) {
+    html += '<section class="section about" id="about"><h2>' + about.title + '</h2>';
+    if (about.intro) {
+      html += '<div class="about-intro">' + about.intro.split(/\n\s*\n/).map(function(p){
+        return '<p>' + p.trim() + '</p>';
+      }).join('') + '</div>';
+    }
+    if (about.points && about.points.length) {
+      html += '<div class="about-points">' + about.points.map(function(pt){
+        return '<div class="about-point"><h3>' + pt.title + '</h3><p>' + pt.text + '</p></div>';
+      }).join('') + '</div>';
+    }
+    html += '</section>';
+  }
+
+  document.getElementById('menu').innerHTML = html;
 }
 
 buildMenu();

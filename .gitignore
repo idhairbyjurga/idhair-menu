@@ -1,0 +1,6 @@
+# Local-only Claude notes (repo is public and Netlify publishes every file)
+CLAUDE.md
+claude/
+.DS_Store
+# Style-reference PDF kept locally only (no download button on the site)
+iDHair-Complete-Menu-November-2026.pdf

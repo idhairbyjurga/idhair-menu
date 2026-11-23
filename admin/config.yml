@@ -28,6 +28,25 @@ collections:
             name: "bookUrl"
             widget: "string"
 
+          - label: "Welcome line above the first section (optional)"
+            name: "welcome"
+            widget: "string"
+            required: false
+
+          - label: "About Us"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Title (also used in the top menu)", name: "title", widget: "string" }
+              - { label: "Intro paragraph", name: "intro", widget: "text" }
+              - label: "Highlights"
+                name: "points"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Heading", name: "title", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text" }
+
           - label: "Menu Sections"
             name: "sections"
             widget: "list"
