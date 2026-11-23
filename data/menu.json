@@ -63,6 +63,7 @@
     {
       "id": "cuts",
       "title": "Hair Cuts & Trims",
+      "navTitle": "Cuts",
       "note": "",
       "groups": [
         {
@@ -192,6 +193,7 @@
     {
       "id": "treatments",
       "title": "Care Treatments",
+      "navTitle": "Treatments",
       "note": "",
       "groups": [
         {

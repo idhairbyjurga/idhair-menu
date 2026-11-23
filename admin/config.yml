@@ -65,6 +65,7 @@ collections:
             fields:
               - { label: "Section ID (no spaces, e.g. styling)", name: "id", widget: "string" }
               - { label: "Section Title (shown on page)", name: "title", widget: "string" }
+              - { label: "Short name for the top menu (optional, e.g. Cuts)", name: "navTitle", widget: "string", required: false }
               - { label: "Note (shown at bottom of section, optional)", name: "note", widget: "string", required: false }
               - { label: "Placeholder text (shown only if section has no services yet)", name: "placeholder", widget: "string", required: false }
               - label: "Service Groups"

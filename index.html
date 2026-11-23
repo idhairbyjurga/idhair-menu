@@ -610,7 +610,7 @@ async function buildMenu(){
   const navEl = document.getElementById('nav-links');
   navEl.innerHTML = (about ? '<a href="#about">' + about.title + '</a>' : '') +
     data.sections.map(function(s){
-      return '<a href="#' + s.id + '">' + s.title + '</a>';
+      return '<a href="#' + s.id + '">' + (s.navTitle || s.title) + '</a>';   // short header name if set
     }).join('');
 
   // Welcome line
