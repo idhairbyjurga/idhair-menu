@@ -34,6 +34,11 @@
           "subhead": "",
           "items": [
             {
+              "name": "Consultation",
+              "desc": "",
+              "price": "FREE"
+            },
+            {
               "name": "Blow Dry — Straight / Smooth",
               "desc": "Professional blow-dry for a smooth, polished finish.",
               "price": "120 / 140 / 160 AED"
@@ -97,7 +102,7 @@
     {
       "id": "colour",
       "title": "Colour",
-      "note": "All highlight services include customised toner + WellaPlex bond protection. Standalone colour and blonding services: blow-dry is booked separately. Colour Edit services are complete appointments with blow-dry included.",
+      "note": "All highlight services include customised toner + WellaPlex bond protection. Standalone colour and blonding services: blow-dry is booked separately. Colour Edit services are complete appointments with blow-dry included. Extra-thick hair may incur additional charges.",
       "groups": [
         {
           "subhead": "Colour Edit",
@@ -178,10 +183,40 @@
     },
     {
       "id": "treatments",
-      "title": "Treatments",
+      "title": "Care Treatments",
       "note": "",
-      "placeholder": "Treatment services coming soon.",
-      "groups": []
+      "groups": [
+        {
+          "subhead": "",
+          "items": [
+            {
+              "name": "Lightened Hair",
+              "desc": "For bleached, highlighted or high-lifted colour results.",
+              "price": "300 / 350 / 400 AED"
+            },
+            {
+              "name": "Coloured Hair",
+              "desc": "For regularly coloured or glossed hair with low damage.",
+              "price": "350 / 400 / 450 AED"
+            },
+            {
+              "name": "Damaged Hair",
+              "desc": "A luxurious ritual for damaged hair, personalised for your hair type.",
+              "price": "300 / 350 / 400 AED"
+            },
+            {
+              "name": "Curly Hair",
+              "desc": "For curly and unruly hair that needs help with frizz and manageability.",
+              "price": "250 / 300 / 350 AED"
+            },
+            {
+              "name": "Glam Color",
+              "desc": "A care treatment for coloured hair, focused on shine and color refresh.",
+              "price": "250 / 300 / 350 AED"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "extensions",
