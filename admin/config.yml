@@ -37,24 +37,17 @@ collections:
             name: "about"
             widget: "object"
             fields:
-              - { label: "Title (also used in the top menu)", name: "title", widget: "string" }
-              - { label: "Intro paragraph", name: "intro", widget: "text" }
-              - label: "Highlights"
+              - { label: "Menu link text (top menu)", name: "title", widget: "string" }
+              - { label: "Heading shown on the page", name: "heading", widget: "string" }
+              - { label: "Intro text (leave an empty line between paragraphs)", name: "intro", widget: "text" }
+              - { label: "Photo beside the text (rounded corners; empty = placeholder)", name: "image", widget: "image", required: false }
+              - label: "Highlights (three columns under the text and photo)"
                 name: "points"
                 widget: "list"
                 required: false
                 fields:
                   - { label: "Heading", name: "title", widget: "string" }
                   - { label: "Text", name: "text", widget: "text" }
-
-          - label: "Philosophy (text left, photo right)"
-            name: "philosophy"
-            widget: "object"
-            required: false
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Text (leave an empty line between paragraphs)", name: "text", widget: "text" }
-              - { label: "Photo (shown with rounded corners; empty = placeholder)", name: "image", widget: "image", required: false }
 
           - label: "Location (map after the price list)"
             name: "location"

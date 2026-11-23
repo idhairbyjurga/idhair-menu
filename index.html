@@ -320,19 +320,11 @@ a{color:var(--ink)}
 /* ============================================================
    ABOUT
    ============================================================ */
-.about-intro{
-  max-width:660px;
-  margin:0 auto;
-  text-align:center;
-  font-size:16px;
-  line-height:1.75;
-}
-.about-intro p{margin:0 0 14px}
 .about-points{
   display:grid;
   grid-template-columns:repeat(3, minmax(0,1fr));
   gap:28px;
-  margin-top:40px;
+  margin-top:56px;
 }
 .about-point{text-align:center}
 .about-point h3{
@@ -351,25 +343,26 @@ a{color:var(--ink)}
 }
 
 /* ============================================================
-   PHILOSOPHY — title + text on the left, photo on the right
+   ABOUT — heading + text on the left, photo on the right,
+   the three highlights in columns underneath
    ============================================================ */
-.philosophy-grid{
+.split-grid{
   display:grid;
   grid-template-columns:repeat(2, minmax(0,1fr));
   gap:56px;
   align-items:center;
 }
-.philosophy h2{
+.split-text h2{
   text-align:left;
-  font-size:46px;
+  font-size:42px;
   margin-bottom:22px;
 }
-.philosophy-text p{
+.split-text p{
   margin:0 0 14px;
   font-size:16px;
   line-height:1.75;
 }
-.philosophy-text p:last-child{margin-bottom:0}
+.split-text p:last-child{margin-bottom:0}
 .photo{
   aspect-ratio:4 / 5;
   border-radius:60px;        /* rounded corners, 60px */
@@ -520,11 +513,10 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:4px}
   .item .name{font-size:14px; letter-spacing:.01em}
   .item .p{font-size:14px}
   .item .desc{grid-column:1 / -1; font-size:13px}
-  .about-intro{font-size:15px}
-  .about-points{grid-template-columns:1fr; gap:26px; margin-top:30px}
-  .philosophy-grid{grid-template-columns:1fr; gap:30px}
-  .philosophy h2{text-align:center; font-size:34px}
-  .philosophy-text p{font-size:15px}
+  .about-points{grid-template-columns:1fr; gap:26px; margin-top:36px}
+  .split-grid{grid-template-columns:1fr; gap:30px}
+  .split-text h2{text-align:center; font-size:32px}
+  .split-text p{font-size:15px}
   .photo{width:100%; max-width:420px; margin:0 auto}
   .location-grid{grid-template-columns:1fr; gap:24px}
   .location h2{text-align:center; font-size:34px; margin-bottom:12px}
@@ -620,38 +612,29 @@ async function buildMenu(){
     html += '<p class="welcome">· ' + data.welcome.trim() + ' ·</p>';
   }
 
-  // About (between the welcome line and the services)
+  // About (between the welcome line and the services):
+  // heading + intro on the left, photo on the right, then the three highlights below.
+  // The header link uses about.title ("About"); the page shows about.heading.
   if (about) {
-    // the title is not shown (the menu link still jumps here); kept for screen readers
-    html += '<section class="section about" id="about"><h2 class="sr-only">' + about.title + '</h2>';
-    if (about.intro) {
-      html += '<div class="about-intro">' + about.intro.split(/\n\s*\n/).map(function(p){
+    const heading = about.heading || about.title;
+    html += '<section class="section about" id="about"><div class="split-grid">';
+    html += '<div class="split-text"><h2>' + heading + '</h2>' +
+      String(about.intro || '').split(/\n\s*\n/).filter(function(p){ return p.trim(); }).map(function(p){
         return '<p>' + p.trim() + '</p>';
       }).join('') + '</div>';
-    }
+    html += about.image
+      ? '<div class="photo"><img src="' + about.image + '" alt="' + heading + '"></div>'
+      : '<div class="photo photo-empty" aria-hidden="true">' +
+          '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">' +
+          '<rect x="6" y="10" width="36" height="28" rx="4"/><circle cx="17" cy="20" r="3.5"/><path d="M6 33l11-9 8 7 6-5 11 9"/></svg>' +
+          'Photo</div>';
+    html += '</div>';
     if (about.points && about.points.length) {
       html += '<div class="about-points">' + about.points.map(function(pt){
         return '<div class="about-point"><h3>' + pt.title + '</h3><p>' + pt.text + '</p></div>';
       }).join('') + '</div>';
     }
     html += '</section>';
-  }
-
-  // Philosophy: title + text left, photo right (placeholder until a photo is set in /admin)
-  const philo = data.philosophy && data.philosophy.title ? data.philosophy : null;
-  if (philo) {
-    html += '<section class="section philosophy" id="philosophy"><div class="philosophy-grid">';
-    html += '<div class="philosophy-text"><h2>' + philo.title + '</h2>' +
-      String(philo.text || '').split(/\n\s*\n/).filter(function(p){ return p.trim(); }).map(function(p){
-        return '<p>' + p.trim() + '</p>';
-      }).join('') + '</div>';
-    html += philo.image
-      ? '<div class="photo"><img src="' + philo.image + '" alt="' + philo.title + '"></div>'
-      : '<div class="photo photo-empty" aria-hidden="true">' +
-          '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">' +
-          '<rect x="6" y="10" width="36" height="28" rx="4"/><circle cx="17" cy="20" r="3.5"/><path d="M6 33l11-9 8 7 6-5 11 9"/></svg>' +
-          'Photo</div>';
-    html += '</div></section>';
   }
 
   // Price sections

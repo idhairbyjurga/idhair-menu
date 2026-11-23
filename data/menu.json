@@ -8,7 +8,9 @@
   "welcome": "Welcome",
   "about": {
     "title": "About",
+    "heading": "Hair Personally Addressed",
     "intro": "i.dresshair by Jurga is a personal hair service in Mira, Dubai, led by European hair stylist Jurga. Every appointment is built around you: your hair, your routine and the look you want to wear every day.",
+    "image": "",
     "points": [
       {
         "title": "Free Consultation",
@@ -23,11 +25,6 @@
         "text": "Book online at any time, or message us on WhatsApp with questions or to arrange your appointment."
       }
     ]
-  },
-  "philosophy": {
-    "title": "Philosophy",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "image": ""
   },
   "location": {
     "title": "Location",
