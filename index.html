@@ -80,16 +80,25 @@ a{color:var(--ink)}
 .nav-inner{
   max-width:1140px;
   margin:0 auto;
-  padding:12px 24px;
+  padding:10px 24px;
   display:grid;
   grid-template-columns:auto 1fr auto;   /* brand | links | button */
   align-items:center;
   gap:16px;
 }
+/* Logo: the "iDHair" letters (not the waves above them) are lined up with the
+   menu text and the Book Now button. The letters' centre is 74% down the logo,
+   so the logo is raised by 24% of its height (46px tall -> 11px). */
+.nav-brand{
+  display:flex;
+  align-items:center;
+  min-height:68px;
+}
 .nav-brand img{
   display:block;
-  height:44px;
+  height:46px;
   width:auto;
+  transform:translateY(-11px);
 }
 .nav-links{
   display:flex;
@@ -203,8 +212,8 @@ a{color:var(--ink)}
   font-size:22px;
   letter-spacing:.04em;
 }
-.menu-intro{
-  margin:6px 0 0;
+.foot-note{
+  margin:26px 0 0;
   text-align:center;
   font-size:11px;
   font-weight:700;
@@ -213,7 +222,7 @@ a{color:var(--ink)}
 }
 .section{
   padding:52px 0 48px;
-  scroll-margin-top:80px;
+  scroll-margin-top:96px;
 }
 /* short centred line between sections, like the line under the PDF logo */
 .section + .section::before{
@@ -387,7 +396,7 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:4px}
             mask-image:linear-gradient(to right, #000 88%, transparent);
   }
   .nav-links::-webkit-scrollbar{display:none}
-  .section{scroll-margin-top:110px}
+  .section{scroll-margin-top:124px}
 }
 @media(max-width:767px){
   .hero{min-height:570px}
@@ -395,7 +404,8 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:4px}
 @media(max-width:700px){
   :root{--pc:50px}
   .nav-inner{padding:10px 16px}
-  .nav-brand img{height:38px}
+  .nav-brand{min-height:58px}
+  .nav-brand img{height:38px; transform:translateY(-9px)}
   .nav-links{gap:18px; font-size:11px}
   .nav-inner .book-btn{padding:10px 14px}
   .home-tabs-inner{padding:0 16px}
@@ -450,6 +460,7 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:4px}
   <div class="foot-buttons">
     <a class="btn btn-solid" id="book-btn-bottom" href="https://idresshair.simplybook.me">Book Your Appointment</a>
   </div>
+  <p class="foot-note">All prices in AED</p>
 </footer>
 
 <script>
@@ -498,7 +509,6 @@ async function buildMenu(){
   let html = '';
   if (data.welcome && data.welcome.trim()) {
     html += '<p class="welcome">· ' + data.welcome.trim() + ' ·</p>';
-    html += '<p class="menu-intro">All prices in AED</p>';
   }
 
   // Sections
