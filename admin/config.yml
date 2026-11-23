@@ -33,7 +33,7 @@ collections:
             widget: "string"
             required: false
 
-          - label: "About Us"
+          - label: "About"
             name: "about"
             widget: "object"
             fields:
