@@ -499,12 +499,13 @@ async function buildMenu(){
 
   const about = data.about && data.about.title ? data.about : null;
 
-  // Nav links (built from sections, so a new section you add in the CMS
-  // automatically gets a nav link too), then About
+  // Nav links in page order: About, then the price sections (built from the
+  // sections, so a new section you add in the CMS automatically gets a link)
   const navEl = document.getElementById('nav-links');
-  navEl.innerHTML = data.sections.map(function(s){
-    return '<a href="#' + s.id + '">' + s.title + '</a>';
-  }).join('') + (about ? '<a href="#about">' + about.title + '</a>' : '');
+  navEl.innerHTML = (about ? '<a href="#about">' + about.title + '</a>' : '') +
+    data.sections.map(function(s){
+      return '<a href="#' + s.id + '">' + s.title + '</a>';
+    }).join('');
 
   // Welcome line
   let html = '';
@@ -512,7 +513,23 @@ async function buildMenu(){
     html += '<p class="welcome">· ' + data.welcome.trim() + ' ·</p>';
   }
 
-  // Sections
+  // About (between the welcome line and the services)
+  if (about) {
+    html += '<section class="section about" id="about"><h2>' + about.title + '</h2>';
+    if (about.intro) {
+      html += '<div class="about-intro">' + about.intro.split(/\n\s*\n/).map(function(p){
+        return '<p>' + p.trim() + '</p>';
+      }).join('') + '</div>';
+    }
+    if (about.points && about.points.length) {
+      html += '<div class="about-points">' + about.points.map(function(pt){
+        return '<div class="about-point"><h3>' + pt.title + '</h3><p>' + pt.text + '</p></div>';
+      }).join('') + '</div>';
+    }
+    html += '</section>';
+  }
+
+  // Price sections
   html += data.sections.map(function(section){
     let itemCount = 0;
     (section.groups || []).forEach(function(g){ itemCount += (g.items || []).length; });
@@ -557,22 +574,6 @@ async function buildMenu(){
     out += '</section>';
     return out;
   }).join('');
-
-  // About
-  if (about) {
-    html += '<section class="section about" id="about"><h2>' + about.title + '</h2>';
-    if (about.intro) {
-      html += '<div class="about-intro">' + about.intro.split(/\n\s*\n/).map(function(p){
-        return '<p>' + p.trim() + '</p>';
-      }).join('') + '</div>';
-    }
-    if (about.points && about.points.length) {
-      html += '<div class="about-points">' + about.points.map(function(pt){
-        return '<div class="about-point"><h3>' + pt.title + '</h3><p>' + pt.text + '</p></div>';
-      }).join('') + '</div>';
-    }
-    html += '</section>';
-  }
 
   document.getElementById('menu').innerHTML = html;
 }
