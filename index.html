@@ -86,13 +86,10 @@ a{color:var(--ink)}
   align-items:center;
   gap:16px;
 }
-.nav-brand{
-  font-family:var(--font-serif);
-  font-weight:400;
-  font-size:23px;
-  line-height:1;
-  color:var(--ink);
-  white-space:nowrap;
+.nav-brand img{
+  display:block;
+  height:44px;
+  width:auto;
 }
 .nav-links{
   display:flex;
@@ -267,7 +264,7 @@ a{color:var(--ink)}
 .col-label.c4{grid-column:4}
 .col-label{
   grid-row:1;
-  text-align:right;
+  text-align:center;
   font-size:10.5px;
   font-weight:700;
   letter-spacing:.06em;
@@ -285,13 +282,12 @@ a{color:var(--ink)}
   text-transform:uppercase;
 }
 .item .p{
-  text-align:right;
+  text-align:center;
   font-size:15px;
   white-space:nowrap;
 }
-/* single price: sits under the LONG column; the name may use the empty columns */
-.item.single .name{grid-column:1 / 4}
-.item .p-all{grid-column:4; justify-self:end}
+/* a single price (or FREE) is centred across the Short / Medium / Long columns */
+.item .p-all{grid-column:2 / -1}
 .item .desc{
   grid-column:1;
   margin-top:3px;
@@ -363,13 +359,6 @@ footer{
   height:auto;
   margin:0 auto;
 }
-.foot-place{
-  margin-top:14px;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-}
 .foot-buttons{
   display:flex;
   flex-wrap:wrap;
@@ -406,7 +395,7 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:4px}
 @media(max-width:700px){
   :root{--pc:50px}
   .nav-inner{padding:10px 16px}
-  .nav-brand{font-size:21px}
+  .nav-brand img{height:38px}
   .nav-links{gap:18px; font-size:11px}
   .nav-inner .book-btn{padding:10px 14px}
   .home-tabs-inner{padding:0 16px}
@@ -432,7 +421,7 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:4px}
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-brand">i.dresshair by Jurga</div>
+    <div class="nav-brand"><img src="logo-idhair-mark.svg" alt="iDHair — i.dresshair by Jurga" width="90" height="44"></div>
     <div class="nav-links" id="nav-links"></div>
     <a class="btn btn-solid book-btn" id="book-btn-top" href="https://wa.me/971566579902" target="_blank" rel="noopener">Book Now</a>
   </div>
@@ -458,7 +447,6 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:4px}
 <footer>
   <!-- Logo, line and "i.dresshair by Jurga" exactly as on the PDF pages (one vector file) -->
   <img class="foot-logo" src="logo-idhair.svg" alt="iDHair — i.dresshair by Jurga" width="242" height="186">
-  <div class="foot-place">Mira, Dubai</div>
   <div class="foot-buttons">
     <a class="btn btn-solid" id="book-btn-bottom" href="https://idresshair.simplybook.me">Book Your Appointment</a>
   </div>
@@ -472,7 +460,8 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:4px}
    ============================================================ */
 
 // "120 / 140 / 160 AED" -> three columns (Short / Medium / Long);
-// anything else ("60 AED", "FREE") -> one value under the Long column
+// anything else ("60 AED", "FREE") -> one value centred across the three columns.
+// "AED" is not shown next to prices: the page says "All prices in AED" once at the top.
 function splitPrice(price){
   var clean = String(price || '').replace(/\s*AED\s*$/i, '').trim();
   var parts = clean.split('/').map(function(s){ return s.trim(); });
@@ -524,16 +513,19 @@ async function buildMenu(){
       const items = group.items || [];
       const threeCols = items.some(function(it){ return splitPrice(it.price).length === 3; });
 
-      out += '<div class="group"><div class="group-head">';
-      out += group.subhead ? '<h3 class="subhead">' + group.subhead + '</h3>' : '<span></span>';
-      out += threeCols
-        ? '<span class="col-label c2">Short</span><span class="col-label c3">Medium</span><span class="col-label c4">Long</span>'
-        : '<span class="col-label c4">AED</span>';
-      out += '</div>';
+      out += '<div class="group">';
+      if (group.subhead || threeCols) {
+        out += '<div class="group-head">';
+        out += group.subhead ? '<h3 class="subhead">' + group.subhead + '</h3>' : '<span></span>';
+        if (threeCols) {
+          out += '<span class="col-label c2">Short</span><span class="col-label c3">Medium</span><span class="col-label c4">Long</span>';
+        }
+        out += '</div>';
+      }
 
       items.forEach(function(item){
         const prices = splitPrice(item.price);
-        out += '<div class="item' + (prices.length === 3 ? '' : ' single') + '"><div class="name">' + item.name + '</div>';
+        out += '<div class="item"><div class="name">' + item.name + '</div>';
         out += prices.length === 3
           ? prices.map(function(p){ return '<div class="p">' + p + '</div>'; }).join('')
           : '<div class="p p-all">' + prices[0] + '</div>';
